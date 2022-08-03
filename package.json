@@ -1,12 +1,45 @@
 {
-  "name": "xcmath",
+  "name": "xc-financial-math-library",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "lib/index.js",
+  "typesp": "lib/index.d.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "prepare" : "npm run build",
+    "prepublishOnly" : "npm test && npm run lint",
+    "test": "jest --config jestconfig.json",
+    "build": "tsc",
+    "preversion" : "npm run lint",
+    "version" : "npm run format && git add -A src",
+    "postversion" : "git push && git push --tags",
+    "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\"",
+    "lint": "tslint -p tsconfig.json"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC"
+
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/MKralupy/xcFinMathLib.git"
+  },
+  "bugs": {
+    "url": "https://github.com/MKralupy/xcFinMathLib/issues"
+  },
+  "homepage": "https://github.com/MKralupy/xcFinMathLib/blob/master/README.md",
+  "keywords": ["financials", "statistics", "math"],
+  "author": "MKralupy",
+  "license": "ISC",
+
+  "devDependencies": {
+    "prettier": "~2.7.1",
+    "tslint": "~6.1.3",
+    "tslint-config-prettier": "~1.18.0",
+    "typescript": "~4.7.4",
+    "@types/jest": "^28.1.6",
+    "jest": "^28.1.3",
+    "ts-jest": "^28.0.7"
+  },
+
+  "files": [
+    "lib/**/*"
+  ]
+
 }
